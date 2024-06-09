@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: data_engineering_app
+    command: python client.py
+    depends_on:
+      - mysql_db
+      - postgres_db
+    environment:
+      MYSQL_HOST: mysql_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: example
+      MYSQL_DB: test_db
+      POSTGRES_HOST: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: test_db
+
+  mysql_db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: test_db
+    ports:
+      - "3306:3306"
+
+  postgres_db:
+    platform: linux/x86_64
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: test_db
+    ports:
+      - "5432:5432"
