@@ -5,7 +5,7 @@ class MySQLConnection(DatabaseConnectionInterface):
     def connect(self):
 
         self.connection = mysql.connector.connect(
-            host="mysql_db",
+            host="localhost",
             user = "root",
             password = "example",
             database = "test_db"

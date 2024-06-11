@@ -17,3 +17,6 @@ class MySQLQuery(DatabaseConnectionInterface):
         except mysql.connector.Error as error:
             print(f"Failed to connect to MySQL database: {error}")
 
+    def execute(self) -> None:
+        print("Executing PostgreSQL query")
+
